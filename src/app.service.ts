@@ -23,23 +23,27 @@ export class AppService {
     }
 
     if (params.lastname) {
-      queryCond.lastname = params.lastname;
+      queryCond.lastname =  { $regex: params.lastname, $options: 'i' };
     }
 
     if (params.rut) {
       queryCond.rut = params.rut;
     }
 
+    if (params.rutChilen) {
+      queryCond.rutChilen = { $regex: params.rutChilen, $options: 'i' };
+    }
+
     if (params.email) {
-      queryCond.email = params.email;
+      queryCond.email = { $regex: params.email, $options: 'i' };
     }
 
     if (params.gender) {
       queryCond.gender = params.gender;
     }
 
-    if (params.addresses && params.addresses.length > 0) {
-      queryCond.addresses = params.addresses;
+    if (params.address) {
+      queryCond.addresses = { $elemMatch: {  description : { $regex: params.address, $options: 'i' } } };
     }
 
     return await this.peopleModel.find(queryCond).exec();

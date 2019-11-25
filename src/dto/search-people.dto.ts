@@ -1,5 +1,3 @@
-import { Addresses } from '../interfaces/addresses';
-
 export class SearchPeopleDto {
   rut: string;
   rutChilen: number;
@@ -7,5 +5,5 @@ export class SearchPeopleDto {
   lastname: string;
   email: string;
   gender: 'F' | 'M';
-  addresses: Addresses[];
+  address: string;
 }
