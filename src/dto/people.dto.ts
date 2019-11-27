@@ -1,6 +1,7 @@
 import { Addresses } from '../interfaces/addresses';
 
-export class CreatePeopleDto {
+export class PeopleDto {
+  id: string;
   rut: string;
   rutChilen: number;
   name: string;

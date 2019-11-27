@@ -1,15 +1,30 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { SearchPeopleDto } from './dto/search-people.dto';
-import { CreatePeopleDto } from './dto/create-people.dto';
+import { PeopleDto } from './dto/people.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  getHello(@Body() data: CreatePeopleDto) {
-    return this.appService.save(data);
+  create(@Body() data: PeopleDto) {
+    return this.appService.create(data);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() data: PeopleDto) {
+    return this.appService.update(id, data);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.appService.delete(id);
+  }
+
+  @Get(':id')
+  getById(@Param('id') id: string) {
+    return this.appService.findProduct(id);
   }
 
   @Get('search')
